@@ -1,0 +1,24 @@
+:root{
+    --primary: lightblue;
+}
+
+header{
+    background-color: var(--primary)
+}
+
+
+
+ul li{
+    list-style: none;
+    font-size: large;
+    background-color: var(--primary);
+    border: 2px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+
+}
+
+footer{
+    background-color: var(--primary);
+}
