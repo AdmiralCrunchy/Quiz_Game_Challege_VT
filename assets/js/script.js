@@ -157,7 +157,7 @@ function startGAME()
     {
         console.log("Marathon")
         maxTIME = 60;
-        maxQUEST = 25;
+        maxQUEST = 20;
     }
     setTIMER(maxTIME);
     //MAKE SURE TO SWITCH THIS BACK AFTER WE FIGURE OUT QUESTION SHIT!!!!!
