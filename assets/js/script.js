@@ -6,8 +6,9 @@ var choiceC = document.getElementById("textC");
 var choiceD = document.getElementById("textD");
 var timeEL = document.getElementById("timeSPOT");
 var qNUM = document.getElementById("questNUM");
-var scoreHIGHEST = document.getElementById("scoreHIGH");
 var topSCORES = [100,90,80,70,60,50,40,30,20,10];
+var topNAMES = ["vt", "vt","vt","vt","vt","vt","vt","vt","vt","vt",];
+var topALL = [topSCORES, topALL];
 
 var thisQUEST = 0;
 var maxQUEST;
@@ -123,9 +124,13 @@ questionFORMAT = [
 function startGAME()
 {
     var normalGAME;
-    console.log(questionFORMAT[0].questionTXT);
+    totalRIGHT = 0;
+    totalWRONG = 0;
+    streakMULT = 1;
+    thisQUEST = 0;
     winGAME = false;
     normalGAME = window.confirm("Normal Game");
+
     if (normalGAME == true)
     {
         console.log("normal")
@@ -286,6 +291,10 @@ function endGAME()
     {
         window.alert("NO HIGHSCORE")
     }
+
+    topSCORES = localStorage.setItem(topSCORES)
+    topNAMES = localStorage.setItem(topNAMES)
+
 }
 
 function checkSCORE(playerSCORE)
@@ -300,6 +309,8 @@ function checkSCORE(playerSCORE)
             i--;
             if (playerSCORE <= topSCORES[i])
             {
+                nameINPUT = window.prompt("Give Initials");
+                topNAMES.splice(i+1, 0, nameINPUT);
                 topSCORES.splice(i+1, 0, playerSCORE);
                 topSCORES.pop();
                 console.log(topSCORES);
@@ -307,6 +318,8 @@ function checkSCORE(playerSCORE)
             }
             if (i == 0)
             {
+                nameINPUT = window.prompt("Give Initials");
+                topNAMES.splice(i, 0, nameINPUT);
                 topSCORES.splice(i, 0, playerSCORE);
                 topSCORES.pop();
                 console.log(topSCORES);
