@@ -172,15 +172,6 @@ choiceB.addEventListener('click', function () {checkANSWER(questionFORMAT[thisQU
 choiceC.addEventListener('click', function () {checkANSWER(questionFORMAT[thisQUEST],2);});
 choiceD.addEventListener('click', function () {checkANSWER(questionFORMAT[thisQUEST],3);});
 
-
-function sleep(){
-    if(buttonPUSHED == false)
-    {
-        console.log("sleeping");
-        setInterval(sleep,20000);
-    }
-}
-
 //timer
 function setTIMER(timeCOUNT)
 {
@@ -313,8 +304,21 @@ function endGAME()
         window.alert("NO HIGHSCORE")
     }
 
+    qNUM.style.visibility = "hidden";
+    textQUEST.style.visibility = "hidden";
+    choiceA.style.visibility = "hidden";
+    choiceB.style.visibility = "hidden";
+    choiceC.style.visibility = "hidden";
+    choiceD.style.visibility = "hidden";
+    timeEL.style.visibility = "hidden";
+
+    
+
     topALL = localStorage.setItem('topALL', topSCORES)
     topALL = localStorage.setItem('topALL', topNAMES)
+
+
+
 
 }
 
