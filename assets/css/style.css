@@ -19,6 +19,14 @@ ul li{
 
 }
 
+section ul li{
+    visibility: hidden;
+}
+
+section ul li:hover {
+    background-color: blueviolet;
+}
+
 footer{
     background-color: var(--primary);
 }
