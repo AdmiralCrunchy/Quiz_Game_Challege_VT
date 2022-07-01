@@ -8,7 +8,7 @@ var timeEL = document.getElementById("timeSPOT");
 var qNUM = document.getElementById("questNUM");
 var topSCORES = [100,90,80,70,60,50,40,30,20,10];
 var topNAMES = ["vt", "vt","vt","vt","vt","vt","vt","vt","vt","vt",];
-var topALL = [topSCORES, topALL];
+var topALL = {topSCORES, topALL};
 
 var thisQUEST = 0;
 var maxQUEST;
@@ -20,6 +20,7 @@ var totalWRONG = 0;
 var streakMULT = 1;
 var timeBONUS;
 var finalSCORE;
+var timeLEFT;
 
 //Question Arrays
 questionFORMAT = [
@@ -104,9 +105,24 @@ questionFORMAT = [
         correctAnswer: 2,
     },
     {
-        questionTXT: "What animal is on the Porche logo?" ,
-        choicesABCD:  ["Horse", "Bull", "Platypus", "Lion"],
+        questionTXT: "Which is not an olympic ring color?" ,
+        choicesABCD:  ["Green", "Magneta", "Red", "Black"],
+        correctAnswer: 1,
+    },
+    {
+        questionTXT: "What does a Geiger Counter measure?" ,
+        choicesABCD:  ["Wind Speeds", "Volumetric Pressure", "Earthquakes", "Radiation"],
+        correctAnswer: 2,
+    },
+    {
+        questionTXT: "What year was Google Images invented?" ,
+        choicesABCD:  ["2001", "1994", "2004", "1999"],
         correctAnswer: 0,
+    },
+    {
+        questionTXT: "Aside from the six main characters, which character appears the most on Friends?" ,
+        choicesABCD:  ["Ben Geller", "Gunther", "Janice", "Richard Burke"],
+        correctAnswer: 1,
     },
 ]
 
@@ -166,16 +182,19 @@ function sleep(){
 }
 
 //timer
-function setTIMER(timeLEFT)
+function setTIMER(timeCOUNT)
 {
+    timeLEFT = timeCOUNT;
+
     var timeInterval = setInterval(function(){
         timeLEFT--;
         timeEL.textContent = timeLEFT + " Seconds remaining!";
         timeBONUS = timeLEFT;
-        if(timeLEFT === 0)
+        if(timeLEFT <= 0)
         {
             clearInterval(timeInterval)
             youLOSE();
+            endGAME();
         }
         if(winGAME == true)
         {
@@ -240,6 +259,8 @@ function checkANSWER(correct, attempt)
     else{
         streakMULT = 1;
         totalWRONG++;
+        timeLEFT = timeLEFT - 5;
+        console.log(timeLEFT)
     }
     
     if (maxQUEST-1 == thisQUEST)
@@ -292,8 +313,8 @@ function endGAME()
         window.alert("NO HIGHSCORE")
     }
 
-    topSCORES = localStorage.setItem(topSCORES)
-    topNAMES = localStorage.setItem(topNAMES)
+    topALL = localStorage.setItem('topALL', topSCORES)
+    topALL = localStorage.setItem('topALL', topNAMES)
 
 }
 
@@ -312,8 +333,10 @@ function checkSCORE(playerSCORE)
                 nameINPUT = window.prompt("Give Initials");
                 topNAMES.splice(i+1, 0, nameINPUT);
                 topSCORES.splice(i+1, 0, playerSCORE);
+                topNAMES.pop();
                 topSCORES.pop();
                 console.log(topSCORES);
+                console.log(topNAMES);
                 return true;
             }
             if (i == 0)
@@ -321,8 +344,10 @@ function checkSCORE(playerSCORE)
                 nameINPUT = window.prompt("Give Initials");
                 topNAMES.splice(i, 0, nameINPUT);
                 topSCORES.splice(i, 0, playerSCORE);
+                topNAMES.pop();
                 topSCORES.pop();
                 console.log(topSCORES);
+                console.log(topNAMES);
                 return true;
             }
         }
